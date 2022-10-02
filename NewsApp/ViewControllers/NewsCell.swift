@@ -9,8 +9,8 @@ import UIKit
 
 class NewsCell: UITableViewCell {
 
-    var newsImageView = UIImageView()
-    var newsTitleLabel = UILabel()
+     let newsImageView = NewsImageView()
+     let newsTitleLabel = UILabel()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -27,14 +27,9 @@ class NewsCell: UITableViewCell {
     }
     
     func setNewsImage(url: String) {
-        let queue = DispatchQueue.global(qos: .utility)
-        
-        queue.async {
-            if let imageData = ImageManager.shared.fetchImage(from: url){
-                DispatchQueue.main.async {
-                    self.newsImageView.image = UIImage(data: imageData)
-                }
-            }
+        DispatchQueue.main.async {
+            self.newsImageView.fetchImage(from: url)
+            print("DONE")
         }
     }
     
@@ -57,7 +52,7 @@ class NewsCell: UITableViewCell {
     }
 
     func configureTitleLabel() {
-        newsTitleLabel.numberOfLines = 0
+        newsTitleLabel.adjustsFontSizeToFitWidth = true
     }
     
     func setImageConstraints() {

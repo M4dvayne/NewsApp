@@ -16,6 +16,7 @@
 		2392793928D68DD8001C2D21 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2392793828D68DD7001C2D21 /* Model.swift */; };
 		2392793C28DF5720001C2D21 /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2392793B28DF5720001C2D21 /* NewsCell.swift */; };
 		2392793E28E504CC001C2D21 /* DetailNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2392793D28E504CC001C2D21 /* DetailNewsViewController.swift */; };
+		2392794028E5E500001C2D21 /* NewsImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2392793F28E5E500001C2D21 /* NewsImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		2392793828D68DD7001C2D21 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		2392793B28DF5720001C2D21 /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
 		2392793D28E504CC001C2D21 /* DetailNewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailNewsViewController.swift; sourceTree = "<group>"; };
+		2392793F28E5E500001C2D21 /* NewsImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 			children = (
 				2392792128D671A6001C2D21 /* ViewController.swift */,
 				2392793B28DF5720001C2D21 /* NewsCell.swift */,
+				2392793F28E5E500001C2D21 /* NewsImageView.swift */,
 				2392793D28E504CC001C2D21 /* DetailNewsViewController.swift */,
 			);
 			path = ViewControllers;
@@ -195,6 +198,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2392793928D68DD8001C2D21 /* Model.swift in Sources */,
+				2392794028E5E500001C2D21 /* NewsImageView.swift in Sources */,
 				2392793628D68A94001C2D21 /* NetworkManager.swift in Sources */,
 				2392792228D671A6001C2D21 /* ViewController.swift in Sources */,
 				2392791E28D671A6001C2D21 /* AppDelegate.swift in Sources */,

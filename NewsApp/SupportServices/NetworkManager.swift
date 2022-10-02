@@ -67,10 +67,20 @@ class ImageManager {
     
     private init() {}
     
-    func fetchImage(from url: String?) -> Data?{
-        guard let stringURL = url else {return nil}
-        guard let imageURL = URL(string: stringURL) else {return nil}
-        return try? Data(contentsOf: imageURL)
+    func fetchImage(from url: URL, completion: @escaping (Data, URLResponse) -> Void){
+        //сессия для того чтобы получить объект + ответ от сервера для кеширования изображения
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let data = data , let response = response else {
+                print(error?.localizedDescription ?? "No error description")
+                return
+            }
+            //так же сравним url адрес изображения запрошенного из ячейки с адресом изображения которое нам вернулось(только в случае соответствия присваиваем данные) - блоки замыкания работают асинхронно а сам запрос совершается моментально
+            guard url == response.url else {return}
+            
+            DispatchQueue.global().async {
+                completion(data, response)
+            }
+        }.resume()
     }
 }
 

@@ -13,15 +13,15 @@ struct News: Codable {
     let status: String
     let news: [NewsElement]
     
-    init?(json: [String: Any]) {
-        guard let status = json["status"] as? String,
-              let news = json["news"] as? [NewsElement]
-        else {
-            return nil
-        }
-        self.status = status
-        self.news = news
-    }
+//    init?(json: [String: Any]) {
+//        guard let status = json["status"] as? String,
+//              let news = json["news"] as? [NewsElement]
+//        else {
+//            return nil
+//        }
+//        self.status = status
+//        self.news = news
+//    }
 }
 
 // MARK: - NewsElements
