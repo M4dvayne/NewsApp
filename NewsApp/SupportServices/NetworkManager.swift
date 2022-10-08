@@ -68,12 +68,13 @@ enum Link: String {
     case requestURL = "https://api.currentsapi.services/v1/latest-news"
 }
 
-//MARK: Error Cases
-enum ErrorType: Error {
-    case invalidURL
-    case noDataAvailable
-    case parsingError
-}
+////MARK: Error Cases
+//enum ErrorType: Error {
+//    case invalidURL
+//    case noDataAvailable
+//    case parsingError
+//}
+
 //MARK: API Token
 enum API: String {
     case token = "CBlnbESdR94V-al0LkiymAWTL3CyF_BV7n9_HZZ58uPrtB3F"
