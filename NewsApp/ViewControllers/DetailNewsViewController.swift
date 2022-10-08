@@ -9,12 +9,17 @@ import UIKit
 
 class DetailNewsViewController: UIViewController {
     
+    private let newsImage = NewsImageView()
     var news: NewsElement!
+    
+    //MARK: ViewElements
     
     private lazy var detailNewsImageView: UIImageView = {
         let detailNewsImageView = UIImageView()
-        detailNewsImageView.backgroundColor = UIColor.orange
+        detailNewsImageView.backgroundColor = UIColor.lightGray
         detailNewsImageView.layer.cornerRadius = 20
+        detailNewsImageView.clipsToBounds = true
+        loadMainImage(from: news.image)
         
         return detailNewsImageView
     }()
@@ -31,19 +36,23 @@ class DetailNewsViewController: UIViewController {
     
     private lazy var detailNewsBodyLabel: UILabel = {
         let detailNewsBodyLabel = UILabel()
-        detailNewsBodyLabel.text = "Here should be the body of the text!"
+        detailNewsBodyLabel.text = news.newsDescription
+        detailNewsBodyLabel.numberOfLines = 0
         detailNewsBodyLabel.font = UIFont.systemFont(ofSize: 14)
         
         return detailNewsBodyLabel
     }()
     
-
+    
+    //MARK: ViewDidLoad
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         prepareSubviewsWithConstraints()
-        
     }
+    
+    //MARK: SetupConstraints
     
     private func setDetailNewsImageViewConstraints() {
         detailNewsImageView.translatesAutoresizingMaskIntoConstraints                                                                             = false
@@ -53,18 +62,18 @@ class DetailNewsViewController: UIViewController {
         detailNewsImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15).isActive                                       = true
     }
     
-   private func setDetailNewsTitleConstraints() {
+    private func setDetailNewsTitleConstraints() {
         detailNewsTitleLabel.translatesAutoresizingMaskIntoConstraints                                                                            = false
         detailNewsTitleLabel.topAnchor.constraint(equalTo: detailNewsImageView.bottomAnchor, constant: 20).isActive                               = true
         detailNewsTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15).isActive                                         = true
-        detailNewsTitleLabel.heightAnchor.constraint(equalToConstant: 25).isActive                                                                = true
+        detailNewsTitleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15).isActive                                      = true
     }
     
     private func setDetailNewsBodyLabelConstraints() {
-        detailNewsBodyLabel.translatesAutoresizingMaskIntoConstraints = false
-        detailNewsBodyLabel.topAnchor.constraint(equalTo: detailNewsTitleLabel.bottomAnchor, constant: 15).isActive = true
-        detailNewsBodyLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15).isActive = true
-        detailNewsBodyLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 15).isActive = true
+        detailNewsBodyLabel.translatesAutoresizingMaskIntoConstraints                                                                             = false
+        detailNewsBodyLabel.topAnchor.constraint(equalTo: detailNewsTitleLabel.bottomAnchor, constant: 15).isActive                               = true
+        detailNewsBodyLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15).isActive                                          = true
+        detailNewsBodyLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15).isActive                                       = true
     }
     
     private func prepareSubviewsWithConstraints() {
@@ -74,5 +83,24 @@ class DetailNewsViewController: UIViewController {
         setDetailNewsImageViewConstraints()
         setDetailNewsTitleConstraints()
         setDetailNewsBodyLabelConstraints()
+    }
+}
+
+
+//MARK: Extension
+extension DetailNewsViewController{
+    
+    private func loadMainImage(from url: String?){
+        guard let stringURL = url else {return}
+        guard let imageURL = URL(string: stringURL) else {return}
+        
+        DispatchQueue.global().async {
+            guard let imageData = try? Data(contentsOf: imageURL) else {return}
+            let image = UIImage(data: imageData)
+            
+            DispatchQueue.main.async {
+                self.detailNewsImageView.image = image
+            }
+        }
     }
 }
